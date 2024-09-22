@@ -61,7 +61,7 @@ public class BinaryTree {
     /* 
      * Class Node
      *
-     * The node object definition for each node of the bin ary tree.
+     * The node object definition for each node of the binary tree.
      */
 
     static class Node {
