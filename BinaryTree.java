@@ -11,6 +11,7 @@
 
 import java.util.Queue;
 import java.util.LinkedList;
+import java.util.Stack;
 
 /*
  * Class BinaryTree
@@ -52,9 +53,11 @@ public class BinaryTree {
 
     // Constructors
     public BinaryTree() {
+
         root = null;
     }
     public BinaryTree(Node node) {
+
         root = node;
     }
 
@@ -88,18 +91,22 @@ public class BinaryTree {
     public Node root;
 
     public void deleteTree() {
+
         root = null;
     }
 
     public void replaceValue(int oldVal, int newVal) {
+
         replaceValueHelper(root, oldVal, newVal);
     }
 
     public int findMin() {
+
         return findMinHelper(root);
     }
 
     public int nodesGT(int val) {
+
         return nodesGTHelper(root, val);
     }
 
@@ -213,7 +220,7 @@ public class BinaryTree {
      *
      * This method will traverse the tree using a depth first search
      * approach, and for each node found with the value of 'oldVal',
-     * replace it (update teh value in place), with the provided 'newVal'.
+     * replace it (update the value in place), with the provided 'newVal'.
      *
      * Depth first search of the tree is based on recursion. This will result
      * in very few lines of code.
@@ -225,6 +232,17 @@ public class BinaryTree {
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
 
+        //First you should check if it's null
+        if (node==null){
+            return;
+        }
+        //If the node has an old value, it's replaced with new value
+        if (node.data==oldVal){
+            node.data=newVal;
+        }
+        //Traverses the left and right subtrees and replaces node.data when needed
+        replaceValueHelper(node.left, oldVal, newVal);
+        replaceValueHelper(node.right, oldVal, newVal);
     }
 
 
@@ -247,8 +265,40 @@ public class BinaryTree {
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
 
-        return Integer.MAX_VALUE;
+        //if tree is empty, return Integer.MAX_VALUE
+        if (node == null) {
+            return Integer.MAX_VALUE;
+        }
+        //set up min
+        int min = Integer.MAX_VALUE;
+
+        //create a stack and push root into it
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+       //recursively check the top of the stack and compare it to min value.
+        // If it's smaller than min, it's the new min.
+        while (!stack.empty()) {
+            Node cursor = stack.peek();
+            if (cursor.data < min) {
+                min = cursor.data;
+            }
+            //recursion persists until the last node is popped off the stack
+            stack.pop();
+            //right nodes are added to the stack
+            if (cursor.right != null) {
+                stack.push(cursor.right);
+            }
+            //left nodes are added to the stack
+            if (cursor.left != null) {
+                stack.push(cursor.left);
+            }
+        }
+        //once recursion is over, return min value
+        return min;
     }
+
+
 
 
     /*
