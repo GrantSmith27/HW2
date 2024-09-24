@@ -361,16 +361,15 @@ public class BinaryTree {
         // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
         // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
 
-        //if a node is null, its sum and count will not be added to the array
+        //if a node is null, its sum and count will not be added to the total
         if (n==null){
             return new int[]{0,0};
         }
-        //recursively calculate the sum and count to the left and right subtrees of root node
+        //recursively return new int arrays representing left and right subtree data
         int[] left = averageHelper(n.left);
         int[] right = averageHelper(n.right);
 
         //root data is accounted for with [n.data,1]
-        //left and right array data added with root to have total sum and count
         int sum = n.data + left[0] + right[0];
         int count = 1 + left[1] + right[1];
 
