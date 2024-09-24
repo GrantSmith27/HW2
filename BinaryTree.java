@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.Stack;
 
 /*
- * Class BinaryTree
+ * Class BinaryTree        Grant Smith Comp 272
  *
  * This class defines a binary tree object; it is a tree structure where every
  * node as at most two child nodes, which form the tree branches. That implies
