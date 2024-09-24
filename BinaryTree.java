@@ -319,10 +319,20 @@ public class BinaryTree {
         // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
         // BINARY TREE (WHICH IS BASED ON RECURSION)
 
-        // return -1; // RECALL, IF TREE IS EMPTY, RETURN -1
-        //Wouldn't you return 0 if tree is empty?
-       // if(node==null)
+       if(node==null){
        return 0;
+       }
+       //initialize count
+       int count = 0;
+       //if the current node data is more than val, add one to the count
+       if (node.data>val){
+           count++;
+       }
+       //recursively checks child nodes and compares val
+       count += nodesGTHelper(node.left, val);
+       count += nodesGTHelper(node.right, val);
+       //total count is returned after recursion
+       return count;
     }
 
 
